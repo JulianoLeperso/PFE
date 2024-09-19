@@ -18,3 +18,19 @@ Les tribunaux et institutions judiciaires sont souvent submergés par une charge
 - Ines GOULAMHOUSSEN (Big Data)
 - Clement GASNET (Cloud)
 
+
+
+
+
+# Plan
+
+
+- Utiliser plusieurs API de reconnaissance de texte, d'image et interpréter les résultats :
+    •	Google Cloud Vision API or ABBYY Cloud OCR for text extraction.
+    •	OpenAI GPT-4 API fine-tuned with French legal documents for detecting flaws.
+    •	CamemBERT or Azure Text Analytics for custom legal reasoning in French.
+    •	Optionally, integrate a legal knowledge base like LexPredict to provide stronger feedback and case law references.
+    
+- Utiliser du multi threading pour faire en sorte que l'analyse soit plus rapides surtout a cause de l'utilisation de plusieurs API 
+- Le split du powerpoint sera peut être nécéssaire pour contrer les limites de taille des API lors de l'analyse
+- Voir si on veut mêttre de la sauvegarde de données ou d'anciennes analyse, en plus de la connexion a un compte, voir pour un programme de  license payante et utiliser des IA plus ou moins rapides en focntions maios surtout plus ou moins chères ( reagrder une tbale des prix sur les API et en focntion du document donner un prix global pour le business model)
