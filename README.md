@@ -11,10 +11,10 @@ Les tribunaux et institutions judiciaires sont souvent submergés par une charge
 
 ## Équipe :
 
--Chirine BETTAYEB (Big Data)
--Marie GRACIANI (IOT)
--Anuujin ENKHMUNKH (IOT)
--Dorine BATTISTUTA (IOT)
--Ines GOULAMHOUSSEN (Big Data)
--clement GASNET (Cloud)
+- Chirine BETTAYEB (Big Data)\n
+- Marie GRACIANI (IOT)\n
+- Anuujin ENKHMUNKH (IOT)\n
+- Dorine BATTISTUTA (IOT)\n
+- Ines GOULAMHOUSSEN (Big Data)\n
+- Clement GASNET (Cloud)\n
 
