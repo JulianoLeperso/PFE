@@ -1,8 +1,8 @@
-# PFE#
+# PFE
 
-## Sujet :##
+## Sujet :
 
-### Pré-étude des Dossiers Judiciaires utilisant l'Intelligence Artificielle pour l'Identification des Vices de Procédures ### 
+### Pré-étude des Dossiers Judiciaires utilisant l'Intelligence Artificielle pour l'Identification des Vices de Procédures 
 
 
 Comment développer un système de pré-étude des dossiers judiciaires pour identifier rapidement les vices de procédures et les affaires pouvant être jugées plus rapidement, afin d'améliorer l'efficacité des tribunaux et de réduire la charge de travail des institutions judiciaires ?
