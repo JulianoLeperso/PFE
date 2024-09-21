@@ -26,10 +26,14 @@ Les tribunaux et institutions judiciaires sont souvent submergés par une charge
 
 
 * **Utiliser plusieurs API de reconnaissance de texte, d'image et interpréter les résultats :**
-    * Google Cloud Vision API or ABBYY Cloud OCR for text extraction.
+    * OpenCV (with AI-based approaches):
+
+        AI-based: Partially.
+            How it uses AI: While OpenCV itself is primarily an image processing library, it can integrate with machine learning models and AI techniques. For example, you can use pre-trained deep learning models for detecting certain objects in images, including signatures. OpenCV can also work with TensorFlow and Keras models to enhance its ability to detect signatures using AI.
+        Use case: You can use OpenCV to preprocess images (e.g., edge detection, contours) and then apply an AI model for recognizing handwritten signatures.
+        AI Complexity: If used with pre-trained AI models or deep learning frameworks, it becomes AI-driven.
     * OpenAI GPT-4 API fine-tuned with French legal documents for detecting flaws.
-    * CamemBERT or Azure Text Analytics for custom legal reasoning in French.
-    * Optionally, integrate a legal knowledge base like LexPredict to provide stronger feedback and case law references.
+
     
 * **Utiliser du multi threading pour faire en sorte que l'analyse soit plus rapides surtout a cause de l'utilisation de plusieurs API** 
 * **Le split du powerpoint sera peut être nécéssaire pour contrer les limites de taille des API lors de l'analyse**
