@@ -76,14 +76,15 @@ def process_pdf(file_path):
         else:
             print(f"Page {page_num + 1}: No rectangles detected, skipping save")
 
-        # Optionally display the processed image with bounding boxes
-        cv2.imshow(f"Page {page_num + 1} - Signatures Detected", processed_image)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        # Optionally display the processed image with bounding boxes:
+        #cv2.imshow(f"Page {page_num + 1} - Signatures Detected", processed_image)
+        #cv2.waitKey(0)
+        #cv2.destroyAllWindows()
 
     # Close the PDF document after processing
     pdf_document.close()
 
 # Example usage
-pdf_file_path = "./testbailpdf.pdf"
+pdf_file_path = "path_to_your_pdf.pdf"
+
 process_pdf(pdf_file_path)
