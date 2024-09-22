@@ -22,8 +22,33 @@ def pdf_page_to_image(pdf_document, page_number, zoom=2):
     open_cv_image = np.array(img) 
     return cv2.cvtColor(open_cv_image, cv2.COLOR_RGB2BGR)  # Convert RGB to BGR for OpenCV
 
+# Function to merge nearby bounding boxes
+def merge_close_rectangles(rectangles, proximity_threshold):
+    merged_rectangles = []
+    for rect in rectangles:
+        x, y, w, h = rect
+        merged = False
+        for idx, merged_rect in enumerate(merged_rectangles):
+            mx, my, mw, mh = merged_rect
+
+            # Check if rectangles are close to each other
+            if (abs(x - mx) <= proximity_threshold and abs(y - my) <= proximity_threshold):
+                # Combine the rectangles into one big bounding box
+                nx = min(x, mx)
+                ny = min(y, my)
+                nw = max(x + w, mx + mw) - nx
+                nh = max(y + h, my + mh) - ny
+                merged_rectangles[idx] = (nx, ny, nw, nh)
+                merged = True
+                break
+        
+        if not merged:
+            merged_rectangles.append(rect)
+    
+    return merged_rectangles
+
 # Function to process each image and detect signatures
-def detect_signatures_in_image(image):
+def detect_signatures_in_image(image, proximity_threshold=50):
     # Step 1: Convert the image to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -36,8 +61,8 @@ def detect_signatures_in_image(image):
     # Step 4: Find contours in the image
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    # Step 5: Filter the contours and draw bounding boxes around potential signatures
-    bounding_boxes_detected = False
+    # Step 5: Extract bounding boxes from contours
+    bounding_boxes = []
     for contour in contours:
         epsilon = 0.02 * cv2.arcLength(contour, True)
         approx = cv2.approxPolyDP(contour, epsilon, True)
@@ -46,13 +71,21 @@ def detect_signatures_in_image(image):
         
         # Set a size threshold to ignore very small contours
         if w > 30 and h > 30:
-            bounding_boxes_detected = True
-            cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            bounding_boxes.append((x, y, w, h))
+    
+    # Step 6: Merge close rectangles based on the proximity threshold
+    merged_rectangles = merge_close_rectangles(bounding_boxes, proximity_threshold)
+
+    # Step 7: Draw bounding boxes on the image
+    bounding_boxes_detected = len(merged_rectangles) > 0
+    for rect in merged_rectangles:
+        x, y, w, h = rect
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
     return image, bounding_boxes_detected
 
 # Main function to process a PDF
-def process_pdf(file_path):
+def process_pdf(file_path, proximity_threshold=50):
     pdf_document = fitz.open(file_path)
 
     # Create a folder to save processed images
@@ -65,8 +98,8 @@ def process_pdf(file_path):
         # Convert PDF page to image
         image = pdf_page_to_image(pdf_document, page_num)
 
-        # Detect signatures and draw bounding boxes
-        processed_image, bounding_boxes_detected = detect_signatures_in_image(image)
+        # Detect signatures and draw bounding boxes with the specified proximity threshold
+        processed_image, bounding_boxes_detected = detect_signatures_in_image(image, proximity_threshold)
 
         # Only save the image if bounding boxes are detected
         if bounding_boxes_detected:
@@ -86,5 +119,6 @@ def process_pdf(file_path):
 
 # Example usage
 pdf_file_path = "path_to_your_pdf.pdf"
+proximity_threshold = 125  # Set how close the rectangles need to be to merge
 
-process_pdf(pdf_file_path)
+process_pdf(pdf_file_path, proximity_threshold)
