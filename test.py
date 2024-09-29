@@ -118,7 +118,9 @@ def process_pdf(file_path, proximity_threshold=50):
     pdf_document.close()
 
 # Example usage
-pdf_file_path = "path_to_your_pdf.pdf"
+pdf_file_path = r"C:\Users\cleme\Desktop\PFE_files\testbailpdf.pdf"  
 proximity_threshold = 125  # Set how close the rectangles need to be to merge
 
 process_pdf(pdf_file_path, proximity_threshold)
+
+

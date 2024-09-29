@@ -3,7 +3,7 @@ import cv2
 
 
 
-image = cv2.imread('./images/test.jpg')
+image = cv2.imread('./images/bail.jpg')
 
 # Step 1: Convert the image to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
