@@ -1,9 +1,8 @@
 // components/footer.js
-module.exports = function footer() {
-    return `
-      <footer style="text-align: center; padding: 20px; background-color: #333; color: #fff; position: fixed; bottom: 0; width: 100%;">
-        <p>© 2024 Mon Application Node.js</p>
-      </footer>
-    `;
-  };
-  
+export default function Footer() {
+  return (
+    <footer style={{ textAlign: 'center', padding: '20px', backgroundColor: '#333', color: 'white', position: 'fixed', bottom: '0', width: '100%' }}>
+      <p>© 2024 Mon Application Node.js</p>
+    </footer>
+  );
+}
