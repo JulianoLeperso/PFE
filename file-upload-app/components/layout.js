@@ -69,7 +69,7 @@ module.exports = function layout(content) {
             font-size: 16px;
           }
           button:hover {
-            background-color: #7f7c74; /* Légère variation pour l'effet hover */
+            background-color: #7f7c76; /* Légère variation pour l'effet hover */
           }
           h2 {
             text-align: center;
