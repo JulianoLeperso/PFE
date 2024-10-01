@@ -12,9 +12,9 @@ Les tribunaux et institutions judiciaires sont souvent submergés par une charge
 ## Équipe :
 
 - Chirine BETTAYEB (Big Data)
-- Marie GRACIANI (IOT)
-- Anuujin ENKHMUNKH (IOT)
-- Dorine BATTISTUTA (IOT)
+- Marie GRACIANI (PEI)
+- Anuujin ENKHMUNKH (PEI)
+- Dorine BATTISTUTA (PEI)
 - Ines GOULAMHOUSSEN (Big Data)
 - Clement GASNET (Cloud)
 
@@ -181,47 +181,47 @@ The user interface includes:
 Voici un diagramme en ASCII de l'architecture globale de l'application :
 
 ```text
-+-------------------------------+  
++--------------------------------+  
 |        Frontend (React)        |  
 |       (AWS Amplify/S3)         |  
 |   - User Interface             |  
 |   - Video Tutorial             |  
 |   - PDF Upload Form            |  
-+-------------------------------+  
-          |          |
-          V          |
++--------------------------------+  
+          |           |
+          V           |
 +------------------+  |
 |  AWS Cognito     |  |  
 |  - User Auth     |  |  
 +------------------+  |
-          |          |
-          V          V
-  +-------------------------+  
+          |           |
+          V           V
+  +--------------------------+  
   |   API Gateway (REST)     |  
   | - Exposes API Endpoints  |  
   | - Upload/Process/Results |  
-  +-------------------------+  
+  +--------------------------+  
           |          
           V          
-+-----------------------------+   
++------------------------------+   
 |   AWS Lambda (Microservices) |   
 |   - Handle File Upload       |   
 |   - Trigger PDF Processing   |   
-+-----------------------------+   
++------------------------------+   
           |          
           V          
-+-----------------------+      +---------------------------+  
++-----------------------+      +----------------------------+  
 |  Amazon S3            |      |  AWS EC2 / Lambda          |  
 |  - Store PDFs         |<---->|  - Run ML Python Scripts   |  
 |  - Store Results      |      |  - Process PDFs            |  
-+-----------------------+      +---------------------------+  
++-----------------------+      +----------------------------+  
           |          
           V          
-+------------------------+  
-|  DynamoDB (or RDS)     |  
++-------------------------+  
+|  DynamoDB (or RDS)      |  
 |  - Store Metadata       |  
 |  - Track Processing     |  
-+------------------------+  
++-------------------------+  
 ```
 ---
 
