@@ -176,6 +176,55 @@ The user interface includes:
 
 ---
 
+## Diagramme d'Architecture
+
+Voici un diagramme en ASCII de l'architecture globale de l'application :
+
+```text
++-------------------------------+  
+|        Frontend (React)        |  
+|       (AWS Amplify/S3)         |  
+|   - User Interface             |  
+|   - Video Tutorial             |  
+|   - PDF Upload Form            |  
++-------------------------------+  
+          |          |
+          V          |
++------------------+  |
+|  AWS Cognito     |  |  
+|  - User Auth     |  |  
++------------------+  |
+          |          |
+          V          V
+  +-------------------------+  
+  |   API Gateway (REST)     |  
+  | - Exposes API Endpoints  |  
+  | - Upload/Process/Results |  
+  +-------------------------+  
+          |          
+          V          
++-----------------------------+   
+|   AWS Lambda (Microservices) |   
+|   - Handle File Upload       |   
+|   - Trigger PDF Processing   |   
++-----------------------------+   
+          |          
+          V          
++-----------------------+      +---------------------------+  
+|  Amazon S3            |      |  AWS EC2 / Lambda          |  
+|  - Store PDFs         |<---->|  - Run ML Python Scripts   |  
+|  - Store Results      |      |  - Process PDFs            |  
++-----------------------+      +---------------------------+  
+          |          
+          V          
++------------------------+  
+|  DynamoDB (or RDS)     |  
+|  - Store Metadata       |  
+|  - Track Processing     |  
++------------------------+  
+```
+---
+
 ## AWS Guide
 
 1. **Create an S3 Bucket** for storing PDFs and results.
